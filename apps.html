@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja de Aplicativos MVT</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #101026;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      padding-bottom: 80px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin: 50px 0 40px 0;
+      color: #7C4DFF;
+    }
+    .app-card {
+      background-color: #1E1E3F;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.6s ease-in-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .app-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #BB86FC;
+    }
+    .app-desc {
+      font-size: 15px;
+      margin-bottom: 15px;
+      color: #e0e0e0;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 25px;
+      background: linear-gradient(45deg, #7C4DFF, #651FFF);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .download-btn:hover {
+      background: linear-gradient(45deg, #9575CD, #7C4DFF);
+    }
+    .download-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: white;
+    }
+    .progress {
+      width: 100%;
+      background-color: #2A2A4F;
+      border-radius: 30px;
+      overflow: hidden;
+      height: 18px;
+      margin-top: 10px;
+      display: none;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background-color: #00E676;
+      text-align: center;
+      line-height: 18px;
+      color: #000;
+      font-size: 13px;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #101026;
+      color: #999;
+      font-size: 13px;
+      text-align: center;
+      padding: 15px 10px;
+      border-top: 1px solid #2a2a4f;
+    }
+  </style>
+</head>
+<body><h1>Loja de Aplicativos MVT</h1><div class="app-card">
+  <div class="app-title">MVT LITE</div>
+  <div class="app-desc">Tamanho: 6MB<br>Sem configurações Open</div>
+  <a href="mvtlite.apk" onclick="startDownload(event, this)">
+    <button class="download-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>
+      Baixar MVT LITE
+    </button>
+  </a>
+  <div class="progress">
+    <div class="progress-bar">0%</div>
+  </div>
+</div><div class="app-card">
+  <div class="app-title">MVT PRO</div>
+  <div class="app-desc">Tamanho: 35MB<br>Completo</div>
+  <a href="mvtpro.apk" onclick="startDownload(event, this)">
+    <button class="download-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>
+      Baixar MVT PRO
+    </button>
+  </a>
+  <div class="progress">
+    <div class="progress-bar">0%</div>
+  </div>
+</div><footer>
+  © 2019-2025 Loja de Aplicativos. Todos os direitos reservados - MISTERVPN
+</footer><script>
+  function startDownload(event, element) {
+    event.preventDefault();
+    const container = element.parentElement;
+    const progress = container.querySelector('.progress');
+    const bar = container.querySelector('.progress-bar');
+    let value = 0;
+    progress.style.display = 'block';
+
+    const interval = setInterval(() => {
+      value += 10;
+      bar.style.width = value + '%';
+      bar.textContent = value + '%';
+
+      if (value >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          window.location.href = element.href;
+          progress.style.display = 'none';
+          bar.style.width = '0%';
+          bar.textContent = '0%';
+        }, 500);
+      }
+    }, 200);
+  }
+</script></body>
+</html>
